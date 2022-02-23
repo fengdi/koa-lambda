@@ -2,6 +2,7 @@
 const hookify = require("@fengdi-spore/hookify");
 const requireAll = require("require-all");
 const qs = require('qs');
+const compose = require('koa-compose');
 
 const useParameters = hookify.useParameters;
 
@@ -46,6 +47,9 @@ let routersTreeTraverse = function (routers, path = "", res = {}) {
 };
 
 
+
+
+//fn => middleware
 const lambda = function(fn){
 
     
@@ -74,9 +78,17 @@ const lambda = function(fn){
             await next();
         }
     }, param);
-}
+};
 
 
+
+//middleware => fn
+const middlewareify = function(middleware){
+  
+  return function(){
+
+  }
+};
 
 
 

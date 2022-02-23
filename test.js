@@ -5,9 +5,8 @@ const lambda = require('./index.js');
 const app = new Koa();
 
 
-app.use(koaBody()).use( lambda({
-
-}, app) );
+app.use(koaBody())
+.use( lambda({}, app) );
 
 app.use(async ctx => {
   ctx.body = 'Hello World';
