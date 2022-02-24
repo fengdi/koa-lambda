@@ -85,8 +85,10 @@ const lambda = function(fn){
 //middleware => fn
 const middlewareify = function(middleware){
   
-  return function(){
-
+  return async function(){
+    let ctx = useContext();
+    let next = useNext();
+    return await middleware(ctx, next);
   }
 };
 
@@ -141,5 +143,7 @@ module.exports = function(options, app){
 
 Object.assign(module.exports, {
     useContext,
-    useNext
+    useNext,
+    middlewareify,
+    compose
 });
