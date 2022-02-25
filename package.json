@@ -1,12 +1,12 @@
 {
   "name": "koa-lambda-middleware",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["serverless", "lambda", "nodejs", "koa", "koa middleware"],
+  "keywords": ["serverless", "lambda", "nodejs", "koa", "koa middleware", "hooks"],
   "author": "tangoboy <137757831@qq.com>",
   "license": "MIT",
   "dependencies": {
@@ -14,9 +14,5 @@
     "koa-compose": "^4.1.0",
     "qs": "^6.10.3",
     "require-all": "^3.0.0"
-  },
-  "devDependencies":{
-    "koa": "^2.13.4",
-    "koa-body": "^4.2.0"
   }
 }
