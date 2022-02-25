@@ -14,7 +14,8 @@ const useNext = function () {
   return param[1];
 };
 
-const param = function (ctx) {
+//ctx, next  =>  arg[]
+const requestParams = function (ctx, next) {
   if (ctx.request.method === "GET") {
     ctx.request.body = qs.parse(ctx.request.querystring, {
       plainObjects: true,
@@ -76,7 +77,7 @@ const lambda = function (handler, options = {}) {
     if (handler.aop == "before") {
       await next();
     }
-  }, param);
+  }, lambdaMiddleware.requestParams);
 };
 
 //middleware => fn or middleware[] => fn
@@ -91,7 +92,7 @@ const middleware = function (mware) {
   };
 };
 
-module.exports = function (options, app) {
+const lambdaMiddleware = function (options, app) {
   options = Object.assign(
     { handlerAopDefault: "", root: "", dirname: __dirname + "/src" },
     options
@@ -115,10 +116,9 @@ module.exports = function (options, app) {
     lambdaRouters[path] = mware;
   });
 
-  console.log("loadRouter:", Object.keys(lambdaRouters));
+  // console.log("loadRouter:", Object.keys(lambdaRouters));
 
   app.lambdaRouters = (app.lambdaRouters || []).concat(lambdaRouters);
-
 
   return async function (ctx, next) {
     let mware = lambdaRouters[ctx.request.path];
@@ -131,10 +131,13 @@ module.exports = function (options, app) {
   };
 };
 
-Object.assign(module.exports, {
+Object.assign(lambdaMiddleware, {
   useContext,
   useNext,
   middleware,
   compose,
   lambda,
+  requestParams,
 });
+
+module.exports = lambdaMiddleware;
