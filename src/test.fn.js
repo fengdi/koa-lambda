@@ -1,4 +1,4 @@
-let {middlewareify, compose} = require('../index');
+let {middleware, lambda, useNext, useContext} = require('../index');
 
 
 module.exports = {
@@ -8,13 +8,37 @@ module.exports = {
         return `foo fn: ${a} ${b}.`
     },
 
-    bar: middlewareify((ctx, next)=>{
-        console.log(ctx, next);
+    bar: middleware(
+        [
+        async (ctx, next)=>{
+            console.log('a');
 
-        ctx.body = 'AAA';
-    })
+            ctx.body = 'AAA';
+            await next();
+        }, 
+        async (ctx, next)=>{
+            console.log('b')
+            await next();
+        },
+        lambda(async (a, b)=>{
+            const next = useNext();
+            const ctx = useContext();
+
+            await next();
+            ctx.body = 'CCC';
+            console.log('c', a, b)
+
+            return 'DDDD'
+        }),
+        async (ctx, next)=>{
+            console.log('d', next)
+            ctx.body = 'A';
+            // await next();
+        }
+        ]
+    )
 }
 
 
 module.exports.foo.method = 'get';
-module.exports.bar.method = 'get';
+// module.exports.bar.method = 'get';

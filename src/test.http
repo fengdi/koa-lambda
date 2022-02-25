@@ -12,3 +12,31 @@ content-type: application/json
 
 ###
 GET http://localhost:3333/test/foo?args[]=1&args[]={a:1} HTTP/1.1
+
+
+
+
+###
+POST http://localhost:3333/test/bar HTTP/1.1
+content-type: application/json
+
+{
+    "args":[
+        "tangoboy",
+        "123456"
+    ]
+}
+
+
+
+###
+
+POST http://localhost:3333/aaa/index/foo HTTP/1.1
+content-type: application/json
+
+{
+    "args":[
+        "tangoboy",
+        "123456"
+    ]
+}
