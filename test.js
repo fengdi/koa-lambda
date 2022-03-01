@@ -20,4 +20,8 @@ app.use(async ctx => {
   ctx.body = 'Hello World';
 });
 
+
+
+// console.log(app.lambdaRouters)
+
 app.listen(3333);

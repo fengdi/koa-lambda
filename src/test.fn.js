@@ -54,5 +54,5 @@ module.exports = {
 }
 
 
-module.exports.foo.method = 'get';
+// module.exports.foo.method = 'get';
 // module.exports.bar.method = 'get';

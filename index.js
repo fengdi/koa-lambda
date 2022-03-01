@@ -116,9 +116,7 @@ const lambdaMiddleware = function (options, app) {
     lambdaRouters[path] = mware;
   });
 
-  // console.log("loadRouter:", Object.keys(lambdaRouters));
-
-  app.lambdaRouters = (app.lambdaRouters || []).concat(lambdaRouters);
+  app.lambdaRouters = Object.assign(app.lambdaRouters || {}, lambdaRouters);
 
   return async function (ctx, next) {
     let mware = lambdaRouters[ctx.request.path];
