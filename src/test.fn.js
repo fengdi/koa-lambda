@@ -23,7 +23,7 @@ module.exports = {
     },
 
     bar: middleware(
-        [
+        
         async (ctx, next)=>{
             console.log('a');
 
@@ -49,7 +49,7 @@ module.exports = {
             ctx.body = 'A';
             // await next();
         }
-        ]
+        
     )
 }
 

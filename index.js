@@ -81,10 +81,10 @@ const lambda = function (handler, options = {}) {
 };
 
 //middleware => fn or middleware[] => fn
-const middleware = function (mware) {
-  if (Array.isArray(mware)) {
-    mware = compose(mware);
-  }
+const middleware = function (...mwares) {
+  mwares = mwares.flat();
+  mware = mwares.length == 1 ? mwares[0] : compose(mwares);
+
   return async function () {
     let ctx = useContext();
     let next = useNext();
