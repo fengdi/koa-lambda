@@ -1,4 +1,27 @@
-### 登陆
+###
+POST http://localhost:3333/test/a/b/c HTTP/1.1
+content-type: application/json
+
+{
+    "args":[
+        2,
+        3
+    ]
+}
+
+###
+POST http://localhost:3333/test/foo2 HTTP/1.1
+content-type: application/json
+
+{
+    "args":[
+        3,
+        4
+    ]
+}
+
+
+###
 POST http://localhost:3333/test/foo HTTP/1.1
 content-type: application/json
 

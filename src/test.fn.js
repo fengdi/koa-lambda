@@ -3,6 +3,20 @@ let {middleware, lambda, useNext, useContext} = require('../index');
 
 module.exports = {
 
+    hello(){
+        return 'hello world'
+    },
+    foo2: middleware(lambda(async(a, b)=>{
+        return {sum: a + b}
+    })),
+    a:{
+        b:{
+          c(a, b){
+             return a + b
+          }
+        }
+    },
+
     async foo(a, b){
         console.log(a, b)
         return `foo fn: ${a} ${b}.`
