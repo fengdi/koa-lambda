@@ -1,6 +1,6 @@
 {
   "name": "koa-lambda-middleware",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "tangoboy <137757831@qq.com>",
   "license": "MIT",
   "dependencies": {
-    "@fengdi-spore/hookify": "^1.0.0",
+    "@fengdi-spore/hookify": "^1.0.1",
     "koa-compose": "^4.1.0",
     "qs": "^6.10.3",
     "require-all": "^3.0.0"
